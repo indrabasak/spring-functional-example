@@ -6,11 +6,14 @@ cache:
 before_script:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-  - mvn clean install
+  - mvn clean install sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=indrabasak-github -Dsonar.login=$SONAR_TOKEN
 notifications:
   email:
   - indra.basak1@gmail.com
   on_success: change
   on_failure: always
   use_notice: true
+env:
+  global:
+    secure: DnIYZbMsRsyYwXViCXL3E9wb1/OOaSwniF95qJf9ot+1S+4ZnoW/pcK6yrTSpdkUD14vFKPTQwba2fa/G1vXR1RsetDdWSRjLOLjUme1EM2Hak4s3TDc0Btv//0aAQOISUANmhNyu6SPStT/93pvuekzxDs5rYoCJdpCBIR4OUxdt3rUm09DZ2i6r9FcDt1paUwjZGf1TPU4AV6i2QvMKNTlOlP8SeS8VpxU5Ast1xCjhRyqWyE5H5/DmL/puxRdGgRO2vpTb4eCBnYFl6X+RUER+qFNMwe4A/TvHnVsfeftjJC4SWFS7SGdKpSUgCDVzAtt7P/W0yHZpSejC+2GPO3StOkIZqZcFwPHjVidrBZOz5hjTvUuONikccbO+qmu5jkV1ANMcxPefUkmap8vihlBTco5kgcUqf76eyM2MMNQ5sWgnAdV69njVqpYAmHQGZopG9FpF5p5CpaHDmxoq8ivv40vaBsDCpy5yuhqoT/PPFjO6ot+1UQBFoT8F38rb1YTj3Qz12SpGnrSBxpXy4FXqO1YXVRmN+HaJyQt3PbJaaz/oaUzg8GKt0PU6owV1y2A30F9NcQDjn00qj120OcmnwPn8D+X6fQLUIldNKZbg4AMflKNjHRMlyPFE+ZjpjGs3gPaQMbQAukAwe4HmZKxZ163i8yA/rvQTPqMH9g=
 
