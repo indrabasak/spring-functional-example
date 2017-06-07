@@ -8,6 +8,8 @@ Spring Functional Example with Spring 5 and Spring Boot 2
 ===================================================================
 TODO
 
+## Spring 5
+TODO
 
 [travis-badge]: https://travis-ci.org/indrabasak/spring-functional-example.svg?branch=master
 [travis-badge-url]: https://travis-ci.org/indrabasak/spring-functional-example
