@@ -11,6 +11,9 @@ TODO
 ## Spring 5
 TODO
 
+## JPA
+TODO
+
 [travis-badge]: https://travis-ci.org/indrabasak/spring-functional-example.svg?branch=master
 [travis-badge-url]: https://travis-ci.org/indrabasak/spring-functional-example
 
