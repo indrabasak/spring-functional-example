@@ -66,17 +66,7 @@ public class BookService {
     }
 
     public Book read(UUID id) {
-        BookEntity entity = null;
-
-        try {
-            entity = repo.getOne(id);
-        } catch (Exception e) {
-            log.error("Book ");
-            Object[] args = {id};
-            String msg = BOOK_NOT_FOUND_MSF_FMT.format(args);
-            log.error(msg, e);
-            throw new DataNotFoundException(msg);
-        }
+        BookEntity entity = getBook(id);
 
         Book book = mapper.map(entity, Book.class);
         Author author = new Author();
@@ -135,22 +125,9 @@ public class BookService {
 
     @Transactional
     public Book update(UUID id, BookRequest request) {
-        BookEntity entity = null;
-
-        try {
-            entity = repo.getOne(id);
-        } catch (Exception e) {
-            log.error("Book ");
-            Object[] args = {id};
-            String msg = BOOK_NOT_FOUND_MSF_FMT.format(args);
-            log.error(msg, e);
-            throw new DataNotFoundException(msg);
-        }
-
-         validate(request);
-
-        mapper.map(request, BookEntity.class);
-        mapper.map(request, request);
+        BookEntity entity = getBook(id);
+        validate(request);
+        mapper.map(request, entity);
         entity.setAuthorFirstName(request.getAuthor().getFirstName());
         entity.setAuthorLastName(request.getAuthor().getLastName());
 
@@ -181,6 +158,22 @@ public class BookService {
 
     public List<String> getPublisher(String publisher) {
         return repo.findDistinctPublisher(publisher);
+    }
+
+    private BookEntity getBook(UUID id) {
+        BookEntity entity = null;
+
+        try {
+            entity = repo.getOne(id);
+        } catch (Exception e) {
+            log.error("Book ");
+            Object[] args = {id};
+            String msg = BOOK_NOT_FOUND_MSF_FMT.format(args);
+            log.error(msg, e);
+            throw new DataNotFoundException(msg);
+        }
+
+        return entity;
     }
 
     private void validate(BookRequest request) {
