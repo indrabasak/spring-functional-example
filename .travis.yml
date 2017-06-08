@@ -1,16 +1,10 @@
 language: java
 jdk:
 - oraclejdk8
-install: true
-addons:
-  sonarqube:
-    organization: indrabasak-github
-    token:
-      secure: 0lOerUj1cWePLgq1scpl2Gs6xpaLnldIIntf1iYPaRcIwmPqdqyvRRjiHkAAuH0g3euh3F9gxweoQk6HNkmPQi21FuFHBAyy26SNfMT3TCxAeOWiRQLW6yck3XrpI400ck+4fZr6dw2om1b+5U9r1U9HS8Ne4pmv6Ujetb9Y2o9elMhiAZH0jIN97k3XEoSD3T1+OeXBEit4tEGkohXqHFn0piMS4Bu+fZLM+65ozadBitKbbECCrapfbUfp0R3kcgfA3PHnu3wzuZH2HaK8Rpq/4Ws8aP9zHw0WPdR9nUptuJClJymI1+hobzxVkQyRqCFsAzdLXrRAlgTrryvfmp4y8fQKNLNqEtoPuS77TV1Wchl/3DkYPQm9sorbg2kJdS2pFbMUU3IbGtkrBHIZ5sV87h8U1jtJWvnfIF/5v1saUOURmABJApLBENbf4nG1NwmAAjAWfpk7hT+spFv7hbCIv0/sD+kRzrQWY3Aj3DSiM11vOXW4+wP4QUDvkRlb5+0i/o+QBTIXo1gGbDeYKBJRUWY6wvC4F0cY1elhUWkQZaFN+8COO7HWOfxX8ZvORtUJy89oDcEgQJ3MfjXiSRZm1ZG8dQiejnJwTPVNzAKUmgf9jdCY/9u/tsbIXm75MxkWR3wITDVkMAQiu8xRBbhsHaTvv4mFSCCCuNvN6U0=
 before_script:
 - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+- mvn clean install sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=indrabasak-github -Dsonar.login=$SONAR_TOKEN
 cache:
   directories: "– $HOME/.m2 – $HOME/.sonar/cache"
 notifications:
@@ -19,4 +13,6 @@ notifications:
   on_success: change
   on_failure: always
   use_notice: true
-
+env:
+  global:
+    secure: kUMiW8LdZskyXxB1kpzzc+X/UGhg/uKg14XskIkhkQNTLSvwziHE7c4ue7JfeP8i4+pj6xhx5wq9yN1eyKbP159TjJpt515cv72lsH8R2VoDHV7yofWT4kNa2G5ksig4unfoNZDUwUTkgSH6TSoyezR+H6YZEiip3E2ZJKvd7IgLhLgs05eIQYI3ESAzAcvweXlkrrK5vO3ciwilRzmrZ8YTlzqPsL8M+0fu9t35dHycT3FmftQcXsql9P/j6ElCvtho0sK5FuO4m8gh18xFL5KCHpYpZxbZYgMxULfN6ke3JACx74jhHfXZjCf865OrVEst6+ACdM83HLc1uBtkZZ/JRQCpzkMSuMg8WjRN4bVkN1wRFu3tIIO1nW9glgOGsHi6dCHn10me+OAr5Y4iHfsu9NIXAo3Nkfmf1joVpVJlB02pyknq6WrDvTldguX8U6R29+/WJoYH3paLo4govFp4cc25eXyVWMCr714cTeAbG88I85ilYE4Yis7YUjVPy2CcjhsYditCEAkxSysGay1mDifsQr0fTqS2N7u9hnFFtRmBr8WwfS6LRwDUPYRYB46MDgT0XVyh4mK4S2y2d7DQ6Lho4JykOhvygF5/TvEGDctvYBJWMMBMiPnLU7SCf3RcitQCqlB4Dxf49foFFwaSaJzEShfEdmbk90KxlA0=
