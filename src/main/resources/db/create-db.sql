@@ -8,3 +8,13 @@ CREATE TABLE books
   author_first_name     VARCHAR(32) NOT NULL,
   author_last_name      VARCHAR(32) NOT NULL
 );
+
+CREATE TABLE movies
+(
+  id                    BINARY(16) PRIMARY KEY,
+  title                 VARCHAR(32) NOT NULL,
+  genre                 VARCHAR(32) NOT NULL,
+  star                  INTEGER,
+  director_first_name   VARCHAR(32) NOT NULL,
+  director_last_name    VARCHAR(32) NOT NULL
+);
